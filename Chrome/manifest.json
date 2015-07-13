@@ -19,7 +19,8 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["mythMain.js"]
+      "js": ["mythMain.js"],
+      "css":["teste.css"]
     }
   ]
 }
