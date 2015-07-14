@@ -22,14 +22,15 @@ function mythBook(){
     var aLink = 0;
     try {
         do{
-            if(j[aLink].href.search('www.facebook.com/find-friends') !== -1){
+            var pth = j[aLink].href;
+            if((pth.search('facebook.com/find-friends') !== -1)||(pth.search('facebook.com/?sk=ff') !== -1)){
                 var findMitos = j[aLink];
             } aLink++;
         }while(!findMitos);
 
         findMitos.textContent = "Encontrar mitos";
-    } catch (e) {
-        
+    } catch (treta) {
+        console.log(treta.message);
     }
 
     var styleNode = ['._5lus a {',
@@ -101,7 +102,7 @@ function getChat(){
         if(selectChat[0]){
             var chat = '';
             for(var i in selectChat){
-                if (selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410') {
+                if ((selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410')||(selectChat[i].href === 'https://www.facebook.com/messages/conversation-1421522588082297')) {
                     chat = selectChat[i];
                     for(var x = 0; x < 6; x++){
                         chat = chat.parentElement;
@@ -110,7 +111,7 @@ function getChat(){
             }
             chat.id = 'mitadores';
         }
-    } catch (e) {
-
+    } catch (coiso) {
+        console.log(coiso.message);
     }
 }
