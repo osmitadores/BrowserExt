@@ -1,75 +1,75 @@
-.fbDockChatTabFlyout .fbNubFlyoutBody /* -- fondo de ventana de chat y lista de contactos-- */
+#mitadores.fbDockChatTabFlyout .fbNubFlyoutBody /* -- fondo de ventana de chat y lista de contactos-- */
 {background-color: #1A344C !important;}
 
 /* ---------- Burbuja Azul ---------- */
-._1nc6 ._5w1r:after /* -- recuadro de la flechita de la burbuja -- */
+#mitadores ._1nc6 ._5w1r:after /* -- recuadro de la flechita de la burbuja -- */
 {background-image: url(http://i2.minus.com/iWHBZxHhooQVT.png) !important;}
 
-._1nc6 div div div:before
+#mitadores ._1nc6 div div div:before
 {display: none !important; background-color: #0084ff !important; padding-right: 5px !important;}
 
-._1nc6 ._5w1r, ._1nc6 ._5w1r:before, ._5q5b .fbNubFlyoutTitlebar
+#mitadores ._1nc6 ._5w1r, #mitadores ._1nc6 ._5w1r:before, #mitadores ._5q5b .fbNubFlyoutTitlebar
 {background-image: none !important;}
 
-._1nc6 div div div._5w1r /* -- burbuja en si -- */
+#mitadores ._1nc6 div div div._5w1r /* -- burbuja en si -- */
 {background-color: #1665AA !important; color: #fff !important; border-radius: 5px !important; font-size: 14px !important; border: 0px !important; font-family: calibri !important; line-height: 1.1 !important; text-shadow: none !important; padding: 2px 4px 3px !important; margin-right: 2px !important; position: relative !important; top: -2px; -webkit-box-shadow: none !important;}
 
-._1nc6 div div div._5w1r div span._5yl5 span a, ._1nc6 div div div._5w1r div._5wdd div._59go div div.MercuryLinkRight div.fsm, ._5wd4 ._59gp
+#mitadores ._1nc6 div div div._5w1r div span._5yl5 span a, #mitadores ._1nc6 div div div._5w1r div._5wdd div._59go div div.MercuryLinkRight div.fsm, #mitadores ._5wd4 ._59gp
 {color: #dceeff !important;}
 
-._1nc6 div div div._5w1r div._5wdd div._59go div div.MercuryLinkRight div a
+#mitadores ._1nc6 div div div._5w1r div._5wdd div._59go div div.MercuryLinkRight div a
 {color: #fff !important;}
 
-._5wdd ._55pk ._rpb a._ksh
+#mitadores ._5wdd ._55pk ._rpb a._ksh
 {max-width: 172px !important;}
 
-._5wdd ._55pk ._rpb ._5uf0 label.uiCloseButtonSmallDark
+#mitadores ._5wdd ._55pk ._rpb ._5uf0 label.uiCloseButtonSmallDark
 {background-image: url(http://i5.minus.com/iBCuIOU1FgaHA.png) !important; background-color: #f3f3f3 !important;}
 
-._5wdd ._55pk ._rpb ._5sly ._5e4h
+#mitadores ._5wdd ._55pk ._rpb ._5sly ._5e4h
 {border: 1px rgba(0,0,0,0) !important; background-color: #f3f3f3 !important; margin: 1px !important;}
 
-._5wdd ._55pk ._rpb ._5sly ._5e4h ._5e4k
+#mitadores ._5wdd ._55pk ._rpb ._5sly ._5e4h ._5e4k
 {background-color: #77b1ff !important; border: 1px rgba(0,0,0,0) !important;}
 
-._1nc6 ._5w1r .__6k, ._1nc6 ._5w1r .__6l, ._1nc6 ._5w1r .__6m
+#mitadores ._1nc6 ._5w1r .__6k, #mitadores ._1nc6 ._5w1r .__6l, #mitadores ._1nc6 ._5w1r .__6m
 {color: #fff !important;}
 
-._1nc6 ._5w1r ._r38
+#mitadores ._1nc6 ._5w1r ._r38
 {border-top: 0 !important;}
 
-._1nc6 ._5w1r ._4yp6 div
+#mitadores ._1nc6 ._5w1r ._4yp6 div
 {border-radius: 5px !important;}
 
 /* ---------- Burbuja Gris ---------- */
-._1nc7 ._5w1r:after /* -- recuadro de la flechita de la burbuja -- */
+#mitadores ._1nc7 ._5w1r:after /* -- recuadro de la flechita de la burbuja -- */
 {background-image: url(http://i2.minus.com/iWHBZxHhooQVT.png) !important; display: none !important;}
 
-._1nc7 div div div._5w1r /* -- burbuja en si -- */
+#mitadores ._1nc7 div div div._5w1r /* -- burbuja en si -- */
 {background-color: #B33232 !important; color: #fff !important; border-radius: 5px !important; font-size: 14px !important; border: 0px !important; font-family: calibri !important; line-height: 1.1 !important; text-shadow: none !important; padding: 3px 4px 3px !important; margin-left: 2px !important; position: relative !important; top: -2px; margin-bottom: 3px; -webkit-box-shadow: none !important;}
 
-._1nc7 ._5w1r
+#mitadores ._1nc7 ._5w1r
 {padding: 0 !important; background-color: #e9e9e9 !important; background-image: none !important;}
 
-._1nc7 div div div._5w1r div span span a, div.MercuryLinkTitle a,  div.MercuryLinkRight div.fcg /* -- sacar sombra de texto y links --*/
+#mitadores ._1nc7 div div div._5w1r div span span a, #mitadores div.MercuryLinkTitle a, #mitadores div.MercuryLinkRight div.fcg /* -- sacar sombra de texto y links --*/
 {text-shadow: none !important;}
 
-._1nc7 ._5wd9 div div ._zl6 ._55pk
+#mitadores ._1nc7 ._5wd9 div div ._zl6 ._55pk
 {padding: 6px 4px 4px 4px !important;}
 
-._1nc7._2cnu
+#mitadores ._1nc7._2cnu
 {padding: 0 !important;}
 
-._1nc7 ._5ys_
+#mitadores ._1nc7 ._5ys_
 {bottom: 6px !important; height: 30px !important; width: 30px !important;}
 
-._1nc7 ._5ys_ img
+#mitadores ._1nc7 ._5ys_ img
 {height: 30px !important; width: 30px !important;}
 
-._5wd4
+#mitadores ._5wd4
 {padding: 3px 0 2px !important;}
 
-._1nc7 a._5ys_ img
+#mitadores ._1nc7 a._5ys_ img
 {border-radius: 50% !important;}
 /* Fin Burbujas */
 
@@ -207,7 +207,7 @@ div.fbNubFlyoutBodyContent table.conversationContainer tbody tr td.vBot img.load
 #ChatTabsPagelet .uploadFileRow ._2qf
 {margin-top: 3px !important; margin-right: -2px !important;}
 
-._1nc7 ._5w1r, ._1nc7 ._3okg:before
+#mitadores ._1nc7 ._5w1r, #mitadores ._1nc7 ._3okg:before
 {background-color: transparent !important; background-image: none !important;}
 
 /*div.fbNubFlyoutBodyContent table.conversationContainer tbody tr td.vBot div._51lq div div.messages div._510u div._510v /* "Escribiendo" Burbuja personalizada */

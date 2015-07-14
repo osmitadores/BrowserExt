@@ -71,7 +71,7 @@ function mythPlug(){
 
     var styleNode = [
         ".room-background",
-        "{background-image:url('http://i.imgur.com/JeeQCcu.png') !important ;}",
+        "{background-image:url('http://i.imgur.com/JeeQCcu.png.png' ) !important ;}",
 				".torch.right, .torch",
 		"{visibility:hidden}",
 
@@ -85,7 +85,6 @@ function mythPlug(){
     addStyle.appendChild(newStyle);
     document.body.appendChild(addStyle);
 }
-///////////////////////////////////////////////////
 
 document.onmousemove = function(){debug();};
 
@@ -101,6 +100,7 @@ function debug(){
     for(var i = 0; i < 6; i++){
         chat = chat.parentElement;
     }
+    chat.id = 'mitadores';
     //faz coisas
     console.log("point 2");
 }
