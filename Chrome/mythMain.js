@@ -7,18 +7,25 @@ function main(){
     }else if(saite.search("plug.dj") !== -1){
 	  mythPlug();
 	  alert("É o plug!");
-  }else {
-      return 1;
-  }
+    }else {
+        return 1;
+    }
     return 0;
 }
 
 function mythBook(){
 
-    var x = document.getElementById('q');
-    x.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
-    var j = document.getElementById('findFriendsNav');
-    j.textContent = "Encontrar mitos";
+    document.onmousemove = function(){getChat();};
+    var queryMitos = document.getElementById('q');
+    queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
+    var j = document.querySelectorAll('a');
+    var aLink = 0;
+    do{
+        if(j[aLink].href.search('www.facebook.com/find-friends') !== -1){
+            var findMitos = j[aLink];
+        } aLink++;
+    }while(!findMitos);
+    findMitos.textContent = "Encontrar mitos";
 
     var styleNode = ['._5lus a {',
     	'background: url(http://i.imgur.com/GQJa5a7.jpg);',
@@ -74,9 +81,6 @@ function mythPlug(){
         "{background-image:url('http://i.imgur.com/JeeQCcu.png.png' ) !important ;}",
 				".torch.right, .torch",
 		"{visibility:hidden}",
-
-
-
     ];
     styleNode = styleNode.join(" ");
     var addStyle = document.createElement("style");
@@ -86,21 +90,22 @@ function mythPlug(){
     document.body.appendChild(addStyle);
 }
 
-document.onmousemove = function(){debug();};
-
-function debug(){
-    console.log("point 1");
-    var selectChat = document.querySelectorAll('a.titlebarText');
-    var chat = '';
-    for(var i in selectChat){
-        if (selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410') {
-            chat = selectChat[i];
+function getChat(){
+    try {
+        var selectChat = document.querySelectorAll('a.titlebarText');
+        if(selectChat[0]){
+            var chat = '';
+            for(var i in selectChat){
+                if (selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410') {
+                    chat = selectChat[i];
+                    for(var x = 0; x < 6; x++){
+                        chat = chat.parentElement;
+                    }
+                }
+            }
+            chat.id = 'mitadores';
         }
+    } catch (e) {
+        return e.message;
     }
-    for(var i = 0; i < 6; i++){
-        chat = chat.parentElement;
-    }
-    chat.id = 'mitadores';
-    //faz coisas
-    console.log("point 2");
 }
