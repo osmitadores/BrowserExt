@@ -20,12 +20,17 @@ function mythBook(){
     queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
     var j = document.querySelectorAll('a');
     var aLink = 0;
-    do{
-        if(j[aLink].href.search('www.facebook.com/find-friends') !== -1){
-            var findMitos = j[aLink];
-        } aLink++;
-    }while(!findMitos);
-    findMitos.textContent = "Encontrar mitos";
+    try {
+        do{
+            if(j[aLink].href.search('www.facebook.com/find-friends') !== -1){
+                var findMitos = j[aLink];
+            } aLink++;
+        }while(!findMitos);
+
+        findMitos.textContent = "Encontrar mitos";
+    } catch (e) {
+        
+    }
 
     var styleNode = ['._5lus a {',
     	'background: url(http://i.imgur.com/GQJa5a7.jpg);',
@@ -106,6 +111,6 @@ function getChat(){
             chat.id = 'mitadores';
         }
     } catch (e) {
-        return e.message;
+
     }
 }
