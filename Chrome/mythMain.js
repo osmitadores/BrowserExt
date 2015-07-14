@@ -71,7 +71,7 @@ function mythPlug(){
 
     var styleNode = [
         ".room-background",
-        "{background-image:url('http://i.imgur.com/zSMRtE6.png' ) !important ;}",
+        "{background-image:url('http://i.imgur.com/JeeQCcu.png') !important ;}",
 				".torch.right, .torch",
 		"{visibility:hidden}",
 
