@@ -1,10 +1,10 @@
 main();
 
 function main(){
-    var saite = window.location.hostname;
-    if(saite.search("facebook.com") !== -1){
-        mythBook();
-    }else if(saite.search("plug.dj") !== -1){
+    var saite = window.location;
+    if(saite.hostname.search("facebook.com") !== -1){
+        mythBook(saite.pathname);
+    }else if(saite.hostname.search("plug.dj") !== -1){
 	  mythPlug();
 	  alert("É o plug!");
     }else {
@@ -13,8 +13,35 @@ function main(){
     return 0;
 }
 
-function mythBook(){
+function modFB(type){
+    if(type === 'group'){
+        var navBar = document.querySelector('._52fl');
+        var navJoin = navBar.children[0];
+        var navRight = navBar.children[1];
+        var navShare = navRight.children[0];
+        var navNotify = navRight.children[1];
+        navNotify = navNotify.children[1];
+        navNotify = navNotify.children[0];
+        navNotify = navNotify.lastChild;
+        navJoin.style.display = 'none';
+        navShare.style.display = 'none';
+        navNotify.textContent = '';
 
+        try {
+            var titulo = document.querySelector('h2');
+            titulo = titulo.parentElement;
+            titulo.innerHTML = '';
+        } catch (treta) {
+            console.log(treta.message);
+        }
+
+    }
+}
+
+function mythBook(page){
+    if(page.search('groups/osmitadores') !== -1){
+        modFB('group');
+    }
     document.onmousemove = function(){getChat();};
     var queryMitos = document.getElementById('q');
     queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
