@@ -85,3 +85,22 @@ function mythPlug(){
     addStyle.appendChild(newStyle);
     document.body.appendChild(addStyle);
 }
+///////////////////////////////////////////////////
+
+document.onmousemove = function(){debug();};
+
+function debug(){
+    console.log("point 1");
+    var selectChat = document.querySelectorAll('a.titlebarText');
+    var chat = '';
+    for(var i in selectChat){
+        if (selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410') {
+            chat = selectChat[i];
+        }
+    }
+    for(var i = 0; i < 6; i++){
+        chat = chat.parentElement;
+    }
+    //faz coisas
+    console.log("point 2");
+}
