@@ -3,7 +3,7 @@ main();
 function main(){
     var saite = window.location;
     if(saite.hostname.search("facebook.com") !== -1){
-        mythBook(saite.pathname);
+        mythBook();
     }else if(saite.hostname.search("plug.dj") !== -1){
 	  mythPlug();
 	  alert("É o plug!");
@@ -12,37 +12,52 @@ function main(){
     }
     return 0;
 }
+function checkChanges(page){
+    window.contentCol = document.querySelector('#contentCol');
+
+    window.observer = new MutationObserver(function(mutations){
+        mutations.forEach(function(mutation){
+            contentCol.onmousemove = function(){
+                getChat();
+                modFB('group');
+                console.log("UpdatePage");
+            };
+        });
+    });
+
+    window.config = {characterData: true, subtree: true};
+    observer.observe(contentCol, config);
+    //observer.disconnect();
+}
 
 function modFB(type){
     if(type === 'group'){
-        var navBar = document.querySelector('._52fl');
-        var navJoin = navBar.children[0];
-        var navRight = navBar.children[1];
-        var navShare = navRight.children[0];
-        var navNotify = navRight.children[1];
-        navNotify = navNotify.children[1];
-        navNotify = navNotify.children[0];
-        navNotify = navNotify.lastChild;
-        navJoin.style.display = 'none';
-        navShare.style.display = 'none';
-        navNotify.textContent = '';
-
-        try {
+        try{
             var titulo = document.querySelector('h2');
-            titulo = titulo.parentElement;
-            titulo.innerHTML = '';
-        } catch (treta) {
-            console.log(treta.message);
+            if(titulo.textContent === "Os Mitadores"){
+                var navBar = document.querySelector('._52fl');
+                var navJoin = navBar.children[0];
+                var navRight = navBar.children[1];
+                var navShare = navRight.children[0];
+                var navNotify = navRight.children[1];
+                navNotify = navNotify.children[1];
+                navNotify = navNotify.children[0];
+                navNotify = navNotify.lastChild;
+                navJoin.style.display = 'none';
+                navShare.style.display = 'none';
+                navNotify.textContent = '';
+                titulo = titulo.parentElement;
+                titulo.innerHTML = '';
+            }
+        }catch(errinho){
+            
         }
-
     }
 }
 
-function mythBook(page){
-    if(page.search('groups/osmitadores') !== -1){
-        modFB('group');
-    }
-    document.onmousemove = function(){getChat();};
+function mythBook(){
+
+    document.onmousemove = function(){getChat();modFB('group')};
     var queryMitos = document.getElementById('q');
     queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
     var j = document.querySelectorAll('a');
@@ -124,6 +139,7 @@ function mythPlug(){
 }
 
 function getChat(){
+
     try {
         var selectChat = document.querySelectorAll('a.titlebarText');
         if(selectChat[0]){
