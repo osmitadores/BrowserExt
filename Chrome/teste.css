@@ -73,32 +73,33 @@
 {border-radius: 50% !important;}
 /* Fin Burbujas */
 
-._5v9u:after, ._5v9k .UFIAddComment .UFIImageBlockImage:after, ._5v9k .UFIComment .UFIImageBlockImage:after, .litestandClassicWelcomeBox .fbxWelcomeBoxBlock:after, ._5v3q ._4-eo::after, .uiScaledImageContainer
+#mitadores ._5v9u:after, #mitadores ._5v9k .UFIAddComment .UFIImageBlockImage:after, #mitadores ._5v9k .UFIComment .UFIImageBlockImage:after, #mitadores .litestandClassicWelcomeBox .fbxWelcomeBoxBlock:after, #mitadores ._5v3q ._4-eo::after, #mitadores .uiScaledImageContainer
 {border: 0 !important;}
 
-._4f7n:after, ._2dpe:after, ._2dpe:hover::after
+#mitadores ._4f7n:after, #mitadores ._2dpe:after, #mitadores ._2dpe:hover::after
 {background-image: none !important;}
 
-._4ypf, ._4yph
+#mitadores ._4ypf, #mitadores ._4yph
 {display: none !important;}
 
-._5wdd
+#mitadores ._5wdd
 {margin-left: 0 !important;}
 
-._1nc6 ._1rqb
+#mitadores ._1nc6 ._1rqb
 {margin-right: 0 !important;}
 
-._56oy ._55pk
+#mitadores ._56oy ._55pk
 {padding-right: 2px !important;}
 
-._5wdd ._52kr
+#mitadores ._5wdd ._52kr
 {border-radius: 15px !important;}
 
 /* ---------- Barra de titulo de cada ventanita de chat ---------- */
-.uiInlineTokenizer
+
+#mitadores .uiInlineTokenizer
 {border: 1px solid #c0c0c0 !important;}
 
-.fbNubFlyoutTitlebar div div:active, .fbNubFlyoutTitlebar div div.openToggler
+#mitadores .fbNubFlyoutTitlebar div div:active, #mitadores .fbNubFlyoutTitlebar div div.openToggler
 {background-color: #e9e9e9 !important;}
 
 /*.uiPopover a._5vmb:hover, .fbNubFlyoutTitlebar div.openToggler a._5vmb, .fbNubFlyoutTitlebar div a._5vmb:focus
@@ -107,50 +108,65 @@
 /*.fbNubFlyoutTitlebar ._5qth a
 {background-image: url(http://i4.minus.com/iklUNqMryCvyO.png) !important;}*/
 
-._5q5b .fbNubFlyoutTitlebar.titlebar, ._5q5b .fbNubFlyoutTitlebar.titlebar:hover
-{border: 1px solid #e2e2e2 !important; background: #fdfdfd !important; box-shadow: 0 5px 17px -5px rgba(0,0,0,.15) !important; position: relative !important; z-index: 1 !important; border-radius: 0 !important;}
+#mitadores{
+    max-height: 600px;
+    height: auto
+}
 
-.titlebarTextWrapper a
-{color: #424242 !important; text-shadow: none !important; font-weight: 400 !important;}
+/* HEADER DO CHAT DOS MITADERO */
+#mitadores div .fbNubFlyoutTitlebar.titlebar, #mitadores div .fbNubFlyoutTitlebar.titlebar:hover{
+border: 4px solid #222; 
+background: #000 !important; 
+position: relative !important; 
+z-index: 5 !important; 
+border-radius: 4px 4px 0px 0px !important;
+}
+/* TEXTO TITULO DO CHAT DOS MITADERO */
+#mitadores .titlebarTextWrapper a
+{color: #fff !important; text-shadow: none !important; font-weight: 400 !important;}
 
-#ChatTabsPagelet ._5239 .fbNubFlyoutInner .titlebarLabel ._51sn /* Iconito conectado desde el celular */
+#mitadores div .fbNubFlyoutBody.scrollable{
+    border: 1px solid #222222 !important;
+    border-width: 0 4px !important;
+}
+#mitadores #ChatTabsPagelet ._5239 .fbNubFlyoutInner .titlebarLabel ._51sn /* Iconito conectado desde el celular */
 {background-image: url(http://i4.minus.com/ibnX5YFhCLeS4C.png) !important; background-position: 0 1px !important; background-size: 11px 12px !important;}
 
 
-#ChatTabsPagelet  .fbNubFlyoutInner .titlebarButtonWrapper .addToThread
+#mitadores #ChatTabsPagelet  .fbNubFlyoutInner .titlebarButtonWrapper .addToThread
 {background-image: url(http://i4.minus.com/iEt3jxWXsBvYV.png) !important; background-position: 0 0 !important; background-size: 52px 25px !important; opacity: .9 !important;}
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .addToThread:hover, #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .addToThread:active
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .addToThread:hover, #mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .addToThread:active
 {background-position: -25px 0 !important; opacity: 1 !important;}
 
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon
 {background-image: url(http://i4.minus.com/iPpzWlyMx3boF.png) !important; background-position: 0 0 !important; background-size: 52px 25px !important; opacity: .9 !important;}
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon:hover, #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon:active
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon:hover, #mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .videoicon:active
 {background-position: -25px 0 !important; opacity: 1 !important;}
 
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu .button, ._4mq3 div._5qth ._5vmb
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu .button, #mitadores ._4mq3 div._5qth ._5vmb
 {background-image: url(http://i1.minus.com/iu8AolnkTZUxi.png) !important; background-position: 0 0 !important; background-size: 52px 25px !important; opacity: .9 !important;}
 
-._4mq3 div._5qth ._5vmb
+#mitadores ._4mq3 div._5qth ._5vmb
 {background-position: 2px 3px !important; background-size: 42px 20px !important; opacity: .7 !important;}
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu:hover .button, #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu:active .button
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu:hover .button, #mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .optionMenu:active .button
 {background-position: -25px 0 !important; opacity: 1 !important;}
 
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close, #ChatTabsPagelet .fbNub .fbChatTab .close
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close, #mitadores #ChatTabsPagelet .fbNub .fbChatTab .close
 {background-image: url(http://i2.minus.com/ikH4qcx99cTrM.png) !important; background-position: 0 0 !important; background-size: 52px 25px !important; opacity: .9 !important;}
 
-#ChatTabsPagelet .fbNub .fbChatTab .close
+#mitadores #ChatTabsPagelet .fbNub .fbChatTab .close
 {background-position: -4px -4px !important; background-size: 42px 20px !important; opacity: .7 !important;}
 
-#ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close:hover, #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close:active
+#mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close:hover, #mitadores #ChatTabsPagelet .fbNubFlyoutInner .titlebarButtonWrapper .close:active
 {background-position: -25px 0 !important; opacity: 1 !important;}
 
-#BuddylistPagelet .fbNubFlyoutTitlebar .titlebarTextWrapper, #BuddylistPagelet .label, #pagelet_dock .fbNub .name
+#mitadores #BuddylistPagelet .fbNubFlyoutTitlebar .titlebarTextWrapper, #mitadores #BuddylistPagelet .label, #mitadores #pagelet_dock .fbNub .name
 {font-weight: 400 !important;}
 
 .fbNubFlyoutBody /* -- Sombra de abajo -- */
