@@ -379,3 +379,21 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h /* Visto en la Conver */
 
 .uiHeaderActions.rfloat._ohf.fsm.fwn.fcg a:not(._1c1m):hover
 {max-width: 300px !important; color: #3b5998 !important; border-left-color: rgba(0,0,0,.2) !important;}
+
+
+
+#myth_color{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+    background: linear-gradient(to bottom, #45484d 0%,#000000 100%);
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#myth_color:hover {
+    background: #39397B;
+}

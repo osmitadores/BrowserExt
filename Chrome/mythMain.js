@@ -3,6 +3,9 @@ main();
 function main(){
     var saite = window.location;
     if(saite.hostname.search("facebook.com") !== -1){
+        if(!localStorage.mythTest){
+            localStorage.mythTest="Lorem Ipsum";
+        }
         mythBook();
     }else if(saite.hostname.search("plug.dj") !== -1){
 	  mythPlug();
@@ -116,9 +119,16 @@ function mythBook(){
     styleNode = styleNode.join(" ");
     var addStyle = document.createElement("style");
     var newStyle = document.createTextNode(styleNode);
-
     addStyle.appendChild(newStyle);
     document.body.appendChild(addStyle);
+
+    var mOptions = document.createElement("div");
+    var optText = document.createTextNode("Olar");
+    mOptions.appendChild(optText);
+    mOptions.id = "myth_color";
+    document.body.appendChild(mOptions);
+    var op = document.querySelector("#myth_color");
+    op.onclick = function(){alert("Opções")}
 }
 
 
