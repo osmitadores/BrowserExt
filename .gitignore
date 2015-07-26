@@ -1,2 +1,6 @@
 *.pem
 *.crx
+*.exe
+*.bat
+*.zip
+*.rar
