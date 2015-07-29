@@ -3,7 +3,7 @@
 
   "name": "Mitatizador",
   "description": "Mitifique a web!",
-  "version": "0.1",
+  "version": "0.3",
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
           "128": "icon128.png" },
@@ -18,9 +18,14 @@
   ],
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "js": ["mythMain.js"],
-      "css":["teste.css"]
+      "matches": ["*://www.plug.dj/*"],
+      "js": ["mythPlug.js"],
+      "css":["plug.css"]
+    },
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["mythFB.js"],
+      "css":["fb.css"]
     }
   ]
 }
