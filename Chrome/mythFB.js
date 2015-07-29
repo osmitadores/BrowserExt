@@ -1,3 +1,30 @@
+
+var options = document.createElement('li');
+options.className = '_54ni navSubmenu __MenuItem';
+var optLink = document.createElement('a');
+optLink.className = '_54nc';
+optLink.id = 'mythoptions';
+var spanm = document.createElement('span');
+var optSpan = document.createElement('span');
+optSpan.className = '_54nh';
+optSpan.innerHTML = 'Mitatizador';
+
+spanm.appendChild(optSpan);
+optLink.appendChild(spanm);
+options.appendChild(optLink);
+
+try {
+    var optionsBar = document.querySelector('._1xn5._1ayn._p');
+    optionsBar.onclick = function(){
+        addOptions(optionsBar);
+    }
+
+} catch (e) {
+
+}
+
+
+
 main();
 
 function main(){
@@ -55,13 +82,27 @@ function mythBook(){
     }
 
 
-    var mOptions = document.createElement("div");
-    var optText = document.createTextNode("Olar");
-    mOptions.appendChild(optText);
-    mOptions.id = "myth_color";
-    document.body.appendChild(mOptions);
-    var op = document.querySelector("#myth_color");
-    op.onclick = function(){alert("Opções")}
+}
+
+function showOptions(){
+    alert("- Opções -");
+}
+
+function addOptions(){
+
+    var optionsNav = document.querySelector('._54nf');
+    optionsNav.appendChild(options);
+
+    options.onclick = function(){
+        showOptions();
+    }
+    options.onmouseover = function(){
+        options.className = '_54ni navSubmenu __MenuItem _54ne selected';
+    }
+    options.onmouseout = function(){
+        options.className = '_54ni navSubmenu __MenuItem';
+    }
+
 }
 
 function getChat(){
