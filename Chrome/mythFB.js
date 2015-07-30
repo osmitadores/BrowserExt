@@ -1,4 +1,4 @@
-
+/// criação do botão de opções
 var options = document.createElement('li');
 options.className = '_54ni navSubmenu __MenuItem';
 var optLink = document.createElement('a');
@@ -8,32 +8,43 @@ var spanm = document.createElement('span');
 var optSpan = document.createElement('span');
 optSpan.className = '_54nh';
 optSpan.innerHTML = 'Mitatizador';
-
+/// caixa modal
+var modalBox = document.createElement('div');
+modalBox.className = '_3ixn';
+modalBox.id = 'modalbox';
+modalBox.innerHTML = '<div id="centerbox"> TESTANDO </div>';
+/// fechar modal
+var botaoX = document.createElement('div');
+botaoX.id = 'closebox';
+botaoX.innerHTML = ' x ';
+/// botão core
 spanm.appendChild(optSpan);
 optLink.appendChild(spanm);
 options.appendChild(optLink);
 
+/// query do botão
 try {
     var optionsBar = document.querySelector('._1xn5._1ayn._p');
     optionsBar.onclick = function(){
-        addOptions(optionsBar);
+        setTimeout(function(){
+            addOptions();
+        },1400);
     }
 
 } catch (e) {
 
 }
 
-
+///
 
 main();
 
 function main(){
-
-        if(!localStorage.mythTest){
-            localStorage.mythTest="Lorem Ipsum";
+        if(!localStorage.mythData){
+            localStorage.mythData = true;
+            localStorage.mythColor = "#000";
         }
         mythBook();
-
 }
 
 function modFB(type){
@@ -62,8 +73,6 @@ function modFB(type){
 }
 
 function mythBook(){
-
-    document.onmousemove = function(){getChat();modFB('group')};
     var queryMitos = document.getElementById('q');
     queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
     var j = document.querySelectorAll('a');
@@ -81,11 +90,30 @@ function mythBook(){
         console.log(treta.message);
     }
 
+    document.onmousemove = function(){
+        getChat();
+        modFB('group');
+    };
+    document.body.appendChild(modalBox);
+    document.body.appendChild(botaoX);
+
 
 }
 
-function showOptions(){
-    alert("- Opções -");
+function mythOptions(toggle){
+    if(toggle === 'show'){
+        modalBox.style.display = 'block';
+        botaoX.style.display = 'block';
+
+        var closeModal = document.querySelector('#closebox');
+        closeModal.onclick = function(){
+            mythOptions('hide');
+        };
+
+    }else if (toggle === 'hide') {
+        modalBox.style.display = 'none';
+        botaoX.style.display = 'none';
+    }
 }
 
 function addOptions(){
@@ -94,7 +122,8 @@ function addOptions(){
     optionsNav.appendChild(options);
 
     options.onclick = function(){
-        showOptions();
+        mythOptions('show');
+
     }
     options.onmouseover = function(){
         options.className = '_54ni navSubmenu __MenuItem _54ne selected';

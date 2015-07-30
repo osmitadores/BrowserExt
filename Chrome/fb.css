@@ -750,3 +750,42 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     background-size: cover;
     background-repeat: repeat-y;
 }
+
+/*      ModalBox       */
+#modalbox{
+    background-color: rgba(19, 10, 69, 0.83);
+    z-index: 1000;
+    padding: 100px;
+    position: fixed;
+    display: none;
+}
+#centerbox{
+    height: 500px;
+    background-color: #aca4a5;
+    border-radius: 5px;
+    padding: 10px;
+    position: inherit;
+    display: inherit;
+    right: 20%;
+    left: 20%;
+    top: 10%;
+    z-index: 1002;
+}
+#closebox{
+    top: 10%;
+    right: 20%;
+    font-size: 20px;
+    width: 50px;
+    color: #fff;
+    display: none;
+    z-index: 1005;
+    position: fixed;
+    cursor: pointer;
+    text-align: center;
+    background-color: #A11;
+    border-radius: 0px 5px 0px 2px;
+}
+#closebox:hover{
+    background-color: #b23;
+    text-shadow: 1px 1px 1px black;
+}
