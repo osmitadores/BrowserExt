@@ -24,7 +24,7 @@ options.appendChild(optLink);
 
 /// query do botão
 try {
-    var optionsBar = document.querySelector('._1xn5._1ayn._p');
+    var optionsBar = get('query','._1xn5._1ayn._p');
     optionsBar.onclick = function(){
         setTimeout(function(){
             addOptions();
@@ -50,9 +50,9 @@ function main(){
 function modFB(type){
     if(type === 'group'){
         try{
-            var titulo = document.querySelector('h2');
+            var titulo = get('tag','h2',1);
             if(titulo.textContent === "Os Mitadores"){
-                var navBar = document.querySelector('._52fl');
+                var navBar = get('class','_52fl',1);
                 var navJoin = navBar.children[0];
                 var navRight = navBar.children[1];
                 var navShare = navRight.children[0];
@@ -75,7 +75,7 @@ function modFB(type){
 function mythBook(){
     var queryMitos = document.getElementById('q');
     queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
-    var j = document.querySelectorAll('a');
+    var j = get('query all','a');
     var aLink = 0;
     try {
         do{
@@ -105,7 +105,7 @@ function mythOptions(toggle){
         modalBox.style.display = 'block';
         botaoX.style.display = 'block';
 
-        var closeModal = document.querySelector('#closebox');
+        var closeModal = get('id','closebox');
         closeModal.onclick = function(){
             mythOptions('hide');
         };
@@ -118,7 +118,7 @@ function mythOptions(toggle){
 
 function addOptions(){
 
-    var optionsNav = document.querySelector('._54nf');
+    var optionsNav = get('class','_54nf',1);
     optionsNav.appendChild(options);
 
     options.onclick = function(){
@@ -137,14 +137,14 @@ function addOptions(){
 function getChat(){
 
     try{
-        var myth = document.querySelector('#mitadores').id;
+        var myth = get('id','mitadores').id;
     }catch(e){
         // executar loop
     }finally{
 
         try{
 
-            var selectChat = document.querySelectorAll('a.titlebarText');
+            var selectChat = get('query all','a.titlebarText');
             if(selectChat[0]){
 
                 var chat = '';
@@ -166,4 +166,46 @@ function getChat(){
         }
 
     }
+}
+
+//MythQuery-1.1
+function get(type, term, max){
+	if(!type){
+		console.info('HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)');
+	}else{
+		if(type=='id'){
+			return document.getElementById(term);
+		}else if(type=='class'){
+			if(!max){
+				return document.getElementsByClassName(term);
+			}else{
+				return maxLength(document.getElementsByClassName(term),max);
+			}
+		}else if(type=='query'){
+			return document.querySelector(term);
+		}else if(type=='query all'){
+			if(!max){
+				return document.querySelectorAll(term);
+			}else{
+				return maxLength(document.querySelectorAll(term),max);
+			}
+		}else if(type=='tag'){
+			if(!max){
+				return document.getElementsByTagName(term);
+			}else{
+				return maxLength(document.getElementsByTagName(term),max);
+			}
+		}
+	}
+}
+function maxLength(query, amout){
+	if(amout!=1){
+		var queryList = [];
+		for(var i = 0; i < amout; i++){
+		queryList.push(query[i]);
+		}
+		return queryList;
+	}else{
+		return query[0];
+	}
 }

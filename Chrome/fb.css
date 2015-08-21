@@ -705,11 +705,17 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
 
 /* Barra superior */
 
+/* Icone do Facebook [f] */
 ._5lus a {
-    background: url(http://i.imgur.com/GQJa5a7.jpg);
-    background-size: cover;
+    background: url(https://osmitadores.github.io/img/mythbook.jpg) !important;
+    background-size: cover !important;
     border-radius: 20%;
 }
+
+._5lus a:hover {
+    border-radius: 10%;
+}
+
 ._5vb_, ._5vb_ {
     background-color: #eee;
 }
