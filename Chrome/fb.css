@@ -759,7 +759,7 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
 
 /*      ModalBox       */
 #modalbox{
-    background-color: rgba(19, 10, 69, 0.83);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1000;
     padding: 100px;
     position: fixed;
@@ -767,8 +767,8 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
 }
 #centerbox{
     height: 500px;
-    background-color: #aca4a5;
-    border-radius: 5px;
+    background-color: #fff;
+    border-radius: 1px;
     padding: 10px;
     position: inherit;
     display: inherit;
@@ -776,22 +776,29 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     left: 20%;
     top: 10%;
     z-index: 1002;
+    border: solid 1px #555;
+}
+#innerbox{
+    margin: 19px 15px;
 }
 #closebox{
     top: 10%;
     right: 20%;
     font-size: 20px;
     width: 50px;
-    color: #fff;
+    color: #000;
     display: none;
     z-index: 1005;
     position: fixed;
     cursor: pointer;
     text-align: center;
-    background-color: #A11;
-    border-radius: 0px 5px 0px 2px;
+    background-color: #fff;
+    border-radius: 1px 1px 1px 1px;
+    border-top: solid 1px #555;
+    border-right: solid 1px #555;
 }
 #closebox:hover{
-    background-color: #b23;
-    text-shadow: 1px 1px 1px black;
+    color: #fff;
+    background-color: #e81123;
+    /*text-shadow: 1px 1px 1px black;*/
 }

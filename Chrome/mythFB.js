@@ -1,3 +1,14 @@
+/// Caixa modal
+
+var mitatizador = {
+    version:'version 0.4',
+    chat: [
+        'https://www.facebook.com/messages/conversation-671692929530410',
+        'https://www.facebook.com/messages/conversation-1421522588082297'
+    ],
+    teste:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+}
+
 /// criação do botão de opções
 var options = document.createElement('li');
 options.className = '_54ni navSubmenu __MenuItem';
@@ -7,12 +18,12 @@ optLink.id = 'mythoptions';
 var spanm = document.createElement('span');
 var optSpan = document.createElement('span');
 optSpan.className = '_54nh';
-optSpan.innerHTML = 'Mitatizador';
+optSpan.innerHTML = 'Mitatizador <i style="float:right">'+mitatizador.version+'</i>';
 /// caixa modal
 var modalBox = document.createElement('div');
 modalBox.className = '_3ixn';
 modalBox.id = 'modalbox';
-modalBox.innerHTML = '<div id="centerbox"> TESTANDO </div>';
+modalBox.innerHTML = '<div id="centerbox"><div id="innerbox"> '+mitatizador.teste+'</div> </div>';
 /// fechar modal
 var botaoX = document.createElement('div');
 botaoX.id = 'closebox';
@@ -143,16 +154,13 @@ function getChat(){
     try{
         var myth = get('id','mitadores').id;
     }catch(e){
-        // executar loop
-    }finally{
-
         try{
             var selectChat = get('query all','a.titlebarText');
             if(selectChat[0]){
                 var chat = '';
                 for(var i in selectChat){
 
-                    if ((selectChat[i].href === 'https://www.facebook.com/messages/conversation-671692929530410')||(selectChat[i].href === 'https://www.facebook.com/messages/conversation-1421522588082297')) {
+                    if ((selectChat[i].href === mitatizador.chat[0])||(selectChat[i].href === mitatizador.chat[1])) {
 
                         chat = selectChat[i];
                         for(var x = 0; x < 6; x++){
@@ -162,13 +170,12 @@ function getChat(){
                 }
                 chat.id = 'mitadores';
             }
-
-        } catch (coiso) {
-            console.log("Erro no Link do Chat!");
+        }catch(coiso){
+            console.error('Erro ao obter o chat!\n'+coiso);
         }
-
     }
 }
 
 //MythQuery-1.1
-function get(e,t,r){if(e){if("id"==e)return document.getElementById(t);if("class"==e)return r?maxLength(document.getElementsByClassName(t),r):document.getElementsByClassName(t);if("query"==e)return document.querySelector(t);if("query all"==e)return r?maxLength(document.querySelectorAll(t),r):document.querySelectorAll(t);if("tag"==e)return r?maxLength(document.getElementsByTagName(t),r):document.getElementsByTagName(t)}else console.info("HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)")}function maxLength(e,t){if(1!=t){for(var r=[],n=0;t>n;n++)r.push(e[n]);return r}return e[0]}
+function get(e,t,r){if(e){if("id"==e)return document.getElementById(t);if("class"==e)return r?maxLength(document.getElementsByClassName(t),r):document.getElementsByClassName(t);if("query"==e)return document.querySelector(t);if("query all"==e)return r?maxLength(document.querySelectorAll(t),r):document.querySelectorAll(t);if("tag"==e)return r?maxLength(document.getElementsByTagName(t),r):document.getElementsByTagName(t)}else console.info("HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)")}
+function maxLength(e,t){if(1!=t){for(var r=[],n=0;t>n;n++)r.push(e[n]);return r}return e[0]}
