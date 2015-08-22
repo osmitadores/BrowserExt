@@ -149,29 +149,55 @@ function addOptions(){
 
 }
 
+/** getChat
+ * Método que faz a inserção do id em um chat específico.
+ * Como o facebook reseta os elementos de um chat quando ele é fechado,
+ * é preciso inserir o id toda vez que ele é aberto.
+ * Para poder inserir o id no chat específico, é nesserário fazer uma
+ * checagem com uma frequência específica (no caso o evento onmousemove).
+ * Lança erro por alguma eventualidade, pois as exceções conhecidas já estão tratadas.
+ * Sem retorno.
+ */
 function getChat(){
-
     try{
+        /** Forçando uma exceção (TypeError).
+         * Se o id não existir, ele vai lançar uma exceção e vai fazer a checagem no catch.
+         * Se o id já existir (chat já alterado), ele vai ignorar o catch inteiro.
+         * A variável 'myth' nunca será usada, só serve pra provocar o erro.
+         */
         var myth = get('id','mitadores').id;
     }catch(e){
         try{
-            var selectChat = get('query all','a.titlebarText');
-            if(selectChat[0]){
-                var chat = '';
-                for(var i in selectChat){
+            /** Try somente para eventualidades (aparentemente seria
+             * impossível lançar um erro aqui, mas melhor deixar).
+             * 'selectChats' recebe os chats ativos mas não lança
+             * erro mesmo não encontrando nada.
+             */
+            var selectChats = get('query all','a.titlebarText');
 
-                    if ((selectChat[i].href === mitatizador.chat[0])||(selectChat[i].href === mitatizador.chat[1])) {
-
-                        chat = selectChat[i];
+            /** Loop principal de checagem.
+             * Este loop checa se o chat específico está aberto.
+             * É feita uma checagem antes do loop, se 'selectChats' estiver vazio
+             * (nenhum chat aberto), o loop não é executado pois não há necessidade.
+             */
+            if(selectChats[0]){
+                var chat;
+                // loop checando todos os chats.
+                for(var i in selectChats){
+                    // os chats são checados pelo endereço url (fixo).
+                    if ((selectChats[i].href === mitatizador.chat[0])||(selectChats[i].href === mitatizador.chat[1])){
+                        // loop para selecionar o elemento pai do chat (6 elementos acima).
+                        chat = selectChats[i];
                         for(var x = 0; x < 6; x++){
                             chat = chat.parentElement;
                         }
                     }
                 }
+                // setando o id do chat.
                 chat.id = 'mitadores';
             }
         }catch(coiso){
-            console.error('Erro ao obter o chat!\n'+coiso);
+            console.error('Erro desconhecido ao obter o chat!\n'+coiso);
         }
     }
 }
