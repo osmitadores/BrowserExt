@@ -73,8 +73,10 @@ function modFB(type){
 }
 
 function mythBook(){
-    var queryMitos = document.getElementById('q');
-    queryMitos.placeholder = "Procure mitos, mitoses e mitarias"; // Texto temporário
+    var queryMitos = get('id','q');
+    // Texto temporário
+    queryMitos.placeholder = "Procure mitos, mitoses e mitarias";
+
     var j = get('query all','a');
     var aLink = 0;
     try {
@@ -100,6 +102,7 @@ function mythBook(){
 
 }
 
+// TODO Opções
 function mythOptions(toggle){
     if(toggle === 'show'){
         modalBox.style.display = 'block';
@@ -116,6 +119,7 @@ function mythOptions(toggle){
     }
 }
 
+// Criação evento das opções
 function addOptions(){
 
     var optionsNav = get('class','_54nf',1);
@@ -143,10 +147,8 @@ function getChat(){
     }finally{
 
         try{
-
             var selectChat = get('query all','a.titlebarText');
             if(selectChat[0]){
-
                 var chat = '';
                 for(var i in selectChat){
 
@@ -169,43 +171,4 @@ function getChat(){
 }
 
 //MythQuery-1.1
-function get(type, term, max){
-	if(!type){
-		console.info('HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)');
-	}else{
-		if(type=='id'){
-			return document.getElementById(term);
-		}else if(type=='class'){
-			if(!max){
-				return document.getElementsByClassName(term);
-			}else{
-				return maxLength(document.getElementsByClassName(term),max);
-			}
-		}else if(type=='query'){
-			return document.querySelector(term);
-		}else if(type=='query all'){
-			if(!max){
-				return document.querySelectorAll(term);
-			}else{
-				return maxLength(document.querySelectorAll(term),max);
-			}
-		}else if(type=='tag'){
-			if(!max){
-				return document.getElementsByTagName(term);
-			}else{
-				return maxLength(document.getElementsByTagName(term),max);
-			}
-		}
-	}
-}
-function maxLength(query, amout){
-	if(amout!=1){
-		var queryList = [];
-		for(var i = 0; i < amout; i++){
-		queryList.push(query[i]);
-		}
-		return queryList;
-	}else{
-		return query[0];
-	}
-}
+function get(e,t,r){if(e){if("id"==e)return document.getElementById(t);if("class"==e)return r?maxLength(document.getElementsByClassName(t),r):document.getElementsByClassName(t);if("query"==e)return document.querySelector(t);if("query all"==e)return r?maxLength(document.querySelectorAll(t),r):document.querySelectorAll(t);if("tag"==e)return r?maxLength(document.getElementsByTagName(t),r):document.getElementsByTagName(t)}else console.info("HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)")}function maxLength(e,t){if(1!=t){for(var r=[],n=0;t>n;n++)r.push(e[n]);return r}return e[0]}
