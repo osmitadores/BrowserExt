@@ -1,11 +1,14 @@
 /// Caixa modal
 
 var mitatizador = {
-    version:'version 0.4.1',
+    version:'version 0.4.2',
     chat: [
         'https://www.facebook.com/messages/conversation-671692929530410',
         'https://www.facebook.com/messages/conversation-1421522588082297'
     ],
+    searchButton: 'Encontrar mitos',
+    searchMsg: 'Procure mitos, mitoses e mitarias',
+    groupTitle: 'Os Mitadores',
     teste:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 }
 
@@ -56,35 +59,46 @@ function main(){
         mythBook();
 }
 
-function modFB(type){
-    if(type === 'group'){
-        try{
-            var titulo = get('tag','h2',1);
-            if(titulo.textContent === "Os Mitadores"){
-                var navBar = get('class','_52fl',1);
-                var navJoin = navBar.children[0];
-                var navRight = navBar.children[1];
-                var navShare = navRight.children[0];
-                var navNotify = navRight.children[1];
-                navNotify = navNotify.children[1];
-                navNotify = navNotify.children[0];
-                navNotify = navNotify.lastChild;
-                navJoin.style.display = 'none';
-                navShare.style.display = 'none';
-                navNotify.textContent = '';
-                titulo = titulo.parentElement;
-                titulo.innerHTML = '';
-            }
-        }catch(errinho){
+/** @function modFB
+ * Oculta alguns elementos em cima da capa de um grupo específico.
+ * Funciona da mema forma que 'getChat', dentro de um evento onmousemove.
+ * @param groupTitle {string} - Título do grupo.
+ * @return {undefined}
+ */
+function modFB(groupTitle){
+    // Bloco try para o caso de não existir um elemento <h2> na página.
+    try{
+        // obtém o primeiro elemento <h2> que encontrar.
+        var titulo = get('tag','h2',1);
+        // checa o título do grupo.
+        if(titulo.textContent === groupTitle){
+            // oculta os botões do grupo.
+            var navBar = get('class','_52fl',1);
+            var navJoin = navBar.children[0];
+            var navRight = navBar.children[1];
+            var navShare = navRight.children[0];
+            var navNotify = navRight.children[1];
+            navNotify = navNotify.children[1];
+            navNotify = navNotify.children[0];
+            navNotify = navNotify.lastChild;
+            navJoin.style.display = 'none';
+            navShare.style.display = 'none';
+            navNotify.textContent = '';
 
+            // oculta o título do grupo.
+            titulo = titulo.parentElement;
+            titulo.innerHTML = '';
+        }
+    }catch(errinho){
+        // Possível erro conhecido, não há necessidade de lançar.
+        if (errinho.name != "TypeError"){
+            throw errinho;
         }
     }
 }
 
 function mythBook(){
-    var queryMitos = get('id','q');
-    // Texto temporário
-    queryMitos.placeholder = "Procure mitos, mitoses e mitarias";
+    var queryMitos = get('id','q').placeholder = mitatizador.searchMsg;
 
     var j = get('query all','a');
     var aLink = 0;
@@ -96,19 +110,17 @@ function mythBook(){
             } aLink++;
         }while(!findMitos);
 
-        findMitos.textContent = "Encontrar mitos";
+        findMitos.textContent = mitatizador.searchButton;
     } catch (treta) {
         console.log(treta.message);
     }
 
     document.onmousemove = function(){
         getChat();
-        modFB('group');
+        modFB(mitatizador.groupTitle);
     };
     document.body.appendChild(modalBox);
     document.body.appendChild(botaoX);
-
-
 }
 
 // TODO Opções
@@ -147,14 +159,14 @@ function addOptions(){
 
 }
 
-/** getChat
+/** @function getChat
  * Método que faz a inserção do id em um chat específico.
  * Como o facebook reseta os elementos de um chat quando ele é fechado,
  * é preciso inserir o id toda vez que ele é aberto.
  * Para poder inserir o id no chat específico, é nesserário fazer uma
  * checagem com uma frequência específica (no caso o evento onmousemove).
- * Lança erro por alguma eventualidade, pois as exceções conhecidas já estão tratadas.
- * Sem retorno.
+ * @throws Lança erro por alguma eventualidade, pois as exceções conhecidas já estão tratadas.
+ * @return {undefined}.
  */
 function getChat(){
     try{
@@ -195,7 +207,8 @@ function getChat(){
                 }
             }
         }catch(coiso){
-            console.error('Erro desconhecido ao obter o chat!\n'+coiso);
+            console.error('Erro desconhecido ao obter o chat!');
+            throw coiso;
         }
     }
 }
