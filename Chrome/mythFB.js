@@ -1,7 +1,7 @@
 /// Caixa modal
 
 var mitatizador = {
-    version:'version 0.4',
+    version:'version 0.4.1',
     chat: [
         'https://www.facebook.com/messages/conversation-671692929530410',
         'https://www.facebook.com/messages/conversation-1421522588082297'
@@ -45,8 +45,6 @@ try {
 } catch (e) {
 
 }
-
-///
 
 main();
 
@@ -191,10 +189,10 @@ function getChat(){
                         for(var x = 0; x < 6; x++){
                             chat = chat.parentElement;
                         }
+                        // setando o id do chat.
+                        chat.id = 'mitadores';
                     }
                 }
-                // setando o id do chat.
-                chat.id = 'mitadores';
             }
         }catch(coiso){
             console.error('Erro desconhecido ao obter o chat!\n'+coiso);
