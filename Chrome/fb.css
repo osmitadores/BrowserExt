@@ -810,3 +810,8 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     padding-top: inherit;
     padding-left: inherit;
 }
+#copys{
+    bottom: 5px;
+    right: 13px;
+    position: absolute;
+}

@@ -1,5 +1,5 @@
 var mitatizador = {
-    version:'version 0.4.4',
+    version:'version 0.5',
     chat: [
         'https://www.facebook.com/messages/conversation-671692929530410',
         'https://www.facebook.com/messages/conversation-1421522588082297'
@@ -7,12 +7,16 @@ var mitatizador = {
     searchButton: 'Encontrar mitos',
     searchMsg: 'Procure mitos, mitoses e mitarias',
     groupTitle: 'Os Mitadores',
+    smallText: '<small id="copys">Os Mitadores</small>',
     enableChat: `<h3>Chat personalizado</h3>
                  <input class="chatoptions" type="radio" name="chat" value="on">Ativado<br>
                  <input class="chatoptions" type="radio" name="chat" value="off">Desativado`,
     enableGroup: `<h3>Trecos na capa do grupo</h3>
                  <input class="groupoptions" type="radio" name="group" value="hide">Ocultar<br>
-                 <input class="groupoptions" type="radio" name="group" value="show">Mostrar`
+                 <input class="groupoptions" type="radio" name="group" value="show">Mostrar`,
+    tavernaGroup: `<h3>Trecos na capa da Taverna</h3>
+                 <input class="tavernaoptions" type="radio" name="tav" value="hide">Ocultar<br>
+                 <input class="tavernaoptions" type="radio" name="tav" value="show">Mostrar`
 }
 
 /// criação do botão de opções
@@ -33,7 +37,9 @@ modalBox.innerHTML = `<div id="centerbox">
                         <h2 id="configtitle">Myth Configs</h2>
                         <div id="innerbox">
                             ${mitatizador.enableChat}<br><br>
-                            ${mitatizador.enableGroup}
+                            ${mitatizador.enableGroup}<br><br>
+                            ${mitatizador.tavernaGroup}
+                            ${mitatizador.smallText}
                         </div>
                       </div>`;
 /// fechar modal
@@ -57,31 +63,11 @@ try {
 
 }
 
-main();
-
-function main(){
-    if(!localStorage.mythData){
-        localStorage.mythData = true;
-        localStorage.mythChat = true;
-        localStorage.mythGroup = true;
-    }
-    mythBook();
-}
-
 function config(coisa, valor){
-    if(coisa == 'chat'){
-        if(valor == 'on'){
-            localStorage.mythChat = true;
-        }else{
-            localStorage.removeItem('mythChat');
-        }
-    }
-    if(coisa == 'group'){
-        if(valor == 'hide'){
-            localStorage.mythGroup = true;
-        }else{
-            localStorage.removeItem('mythGroup');
-        }
+    if(valor == 'hide' || valor == 'on'){
+        localStorage[coisa] = true;
+    }else{
+        localStorage.removeItem(coisa);
     }
 }
 
@@ -123,13 +109,18 @@ function modFB(groupTitle){
     }
 }
 
-function mythBook(){
+function setQuery(){
     try {
+        // TODO arrumar query, ID 'q' é variado.
         var queryMitos = get('id','q').placeholder = mitatizador.searchMsg;
     } catch (e) {
         console.error('Teu feice tá bugado!');
     }
+}
 
+function mythBook(){
+
+    setQuery();
     var j = get('query all','a');
     var aLink = 0;
     try {
@@ -152,6 +143,9 @@ function mythBook(){
         if(localStorage.mythGroup){
             modFB(mitatizador.groupTitle);
         }
+        if(localStorage.tavernaGroup){
+            modFB("Taverna do Cogu");
+        }
     };
     document.body.appendChild(modalBox);
     document.body.appendChild(botaoX);
@@ -167,7 +161,7 @@ function mythOptions(toggle){
         closeModal.onclick = function(){
             mythOptions('hide');
         };
-/////////////
+///////////// Opções do chat
         var chatOptions = get('class','chatoptions');
         if(localStorage.mythChat){
             chatOptions[0].checked = true;
@@ -175,12 +169,12 @@ function mythOptions(toggle){
             chatOptions[1].checked = true;
         }
         chatOptions[0].onclick = function(){
-            config('chat','on');
+            config('mythChat','on');
         }
         chatOptions[1].onclick = function(){
-            config('chat','off');
+            config('mythChat','off');
         }
-/////////////
+///////////// Opções do grupo
         var groupOptions = get('class','groupoptions');
         if(localStorage.mythGroup){
             groupOptions[0].checked = true;
@@ -188,10 +182,23 @@ function mythOptions(toggle){
             groupOptions[1].checked = true;
         }
         groupOptions[0].onclick = function(){
-            config('group','hide');
+            config('mythGroup','hide');
         }
         groupOptions[1].onclick = function(){
-            config('group','show');
+            config('mythGroup','show');
+        }
+///////////// Opções do grupo (taverna)
+        var tavernaOptions = get('class','tavernaoptions');
+        if(localStorage.tavernaGroup){
+            tavernaOptions[0].checked = true;
+        }else{
+            tavernaOptions[1].checked = true;
+        }
+        tavernaOptions[0].onclick = function(){
+            config('tavernaGroup','hide');
+        }
+        tavernaOptions[1].onclick = function(){
+            config('tavernaGroup','show');
         }
 
     }else if (toggle === 'hide') {
@@ -273,6 +280,15 @@ function getChat(){
     }
 }
 
+(function(){
+    if(!localStorage.mythData){
+        localStorage.mythData = true;
+        localStorage.mythChat = true;
+        localStorage.mythGroup = true;
+    }
+    mythBook();
+})()
+
 //MythQuery-1.1
-function get(e,t,r){if(e){if("id"==e)return document.getElementById(t);if("class"==e)return r?maxLength(document.getElementsByClassName(t),r):document.getElementsByClassName(t);if("query"==e)return document.querySelector(t);if("query all"==e)return r?maxLength(document.querySelectorAll(t),r):document.querySelectorAll(t);if("tag"==e)return r?maxLength(document.getElementsByTagName(t),r):document.getElementsByTagName(t)}else console.info("HOW TO USE:\nArg 1 (String type): id | class | tag | query | query all\nArg 2 (String term): the search term\nArg 3 (Number|String max): maximum number of elements, if required (for NodeList or HTMLCollection)")}
+function get(e,t,r){if(e){if("id"==e)return document.getElementById(t);if("class"==e)return r?maxLength(document.getElementsByClassName(t),r):document.getElementsByClassName(t);if("query"==e)return document.querySelector(t);if("query all"==e)return r?maxLength(document.querySelectorAll(t),r):document.querySelectorAll(t);if("tag"==e)return r?maxLength(document.getElementsByTagName(t),r):document.getElementsByTagName(t)}}
 function maxLength(e,t){if(1!=t){for(var r=[],n=0;t>n;n++)r.push(e[n]);return r}return e[0]}
