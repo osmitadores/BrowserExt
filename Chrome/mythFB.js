@@ -1,7 +1,7 @@
 /// Caixa modal
 
 var mitatizador = {
-    version:'version 0.4.3',
+    version:'version 0.4.4',
     chat: [
         'https://www.facebook.com/messages/conversation-671692929530410',
         'https://www.facebook.com/messages/conversation-1421522588082297'
@@ -12,6 +12,9 @@ var mitatizador = {
     enableChat: `<h3>Chat personalizado</h3>
                  <input class="chatoptions" type="radio" name="chat" value="on">Ativado<br>
                  <input class="chatoptions" type="radio" name="chat" value="off">Desativado`,
+    enableGroup: `<h3>Trecos na capa do grupo</h3>
+                 <input class="groupoptions" type="radio" name="group" value="hide">Ocultar<br>
+                 <input class="groupoptions" type="radio" name="group" value="show">Mostrar`,
     teste:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 }
 
@@ -29,7 +32,12 @@ optSpan.innerHTML = 'Mitatizador <i style="float:right">'+mitatizador.version+'<
 var modalBox = document.createElement('div');
 modalBox.className = '_3ixn';
 modalBox.id = 'modalbox';
-modalBox.innerHTML = `<div id="centerbox"><div id="innerbox">${mitatizador.enableChat}</div> </div>`;
+modalBox.innerHTML = `<div id="centerbox">
+                        <div id="innerbox">
+                            ${mitatizador.enableChat}<br><br>
+                            ${mitatizador.enableGroup}
+                        </div>
+                      </div>`;
 /// fechar modal
 var botaoX = document.createElement('div');
 botaoX.id = 'closebox';
@@ -58,6 +66,7 @@ function main(){
         if(!localStorage.mythData){
             localStorage.mythData = true;
             localStorage.mythChat = true;
+            localStorage.mythGroup = true;
         }
         mythBook();
 }
@@ -68,6 +77,13 @@ function config(coisa, valor){
             localStorage.mythChat = true;
         }else{
             localStorage.removeItem('mythChat');
+        }
+    }
+    if(coisa == 'group'){
+        if(valor == 'hide'){
+            localStorage.mythGroup = true;
+        }else{
+            localStorage.removeItem('mythGroup');
         }
     }
 }
@@ -132,7 +148,9 @@ function mythBook(){
         if(localStorage.mythChat){
             getChat();
         }
-        modFB(mitatizador.groupTitle);
+        if(localStorage.mythGroup){
+            modFB(mitatizador.groupTitle);
+        }
     };
     document.body.appendChild(modalBox);
     document.body.appendChild(botaoX);
@@ -148,6 +166,7 @@ function mythOptions(toggle){
         closeModal.onclick = function(){
             mythOptions('hide');
         };
+/////////////
         var chatOptions = get('class','chatoptions');
         if(localStorage.mythChat){
             chatOptions[0].checked = true;
@@ -159,6 +178,19 @@ function mythOptions(toggle){
         }
         chatOptions[1].onclick = function(){
             config('chat','off');
+        }
+/////////////
+        var groupOptions = get('class','groupoptions');
+        if(localStorage.mythGroup){
+            groupOptions[0].checked = true;
+        }else{
+            groupOptions[1].checked = true;
+        }
+        groupOptions[0].onclick = function(){
+            config('group','hide');
+        }
+        groupOptions[1].onclick = function(){
+            config('group','show');
         }
 
     }else if (toggle === 'hide') {
