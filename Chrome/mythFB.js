@@ -1,7 +1,7 @@
 /// Caixa modal
 
 var mitatizador = {
-    version:'version 0.4.2',
+    version:'version 0.4.3',
     chat: [
         'https://www.facebook.com/messages/conversation-671692929530410',
         'https://www.facebook.com/messages/conversation-1421522588082297'
@@ -9,6 +9,9 @@ var mitatizador = {
     searchButton: 'Encontrar mitos',
     searchMsg: 'Procure mitos, mitoses e mitarias',
     groupTitle: 'Os Mitadores',
+    enableChat: `<h3>Chat personalizado</h3>
+                 <input class="chatoptions" type="radio" name="chat" value="on">Ativado<br>
+                 <input class="chatoptions" type="radio" name="chat" value="off">Desativado`,
     teste:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 }
 
@@ -26,7 +29,7 @@ optSpan.innerHTML = 'Mitatizador <i style="float:right">'+mitatizador.version+'<
 var modalBox = document.createElement('div');
 modalBox.className = '_3ixn';
 modalBox.id = 'modalbox';
-modalBox.innerHTML = '<div id="centerbox"><div id="innerbox"> '+mitatizador.teste+'</div> </div>';
+modalBox.innerHTML = `<div id="centerbox"><div id="innerbox">${mitatizador.enableChat}</div> </div>`;
 /// fechar modal
 var botaoX = document.createElement('div');
 botaoX.id = 'closebox';
@@ -54,9 +57,19 @@ main();
 function main(){
         if(!localStorage.mythData){
             localStorage.mythData = true;
-            localStorage.mythColor = "#000";
+            localStorage.mythChat = true;
         }
         mythBook();
+}
+
+function config(coisa, valor){
+    if(coisa == 'chat'){
+        if(valor == 'on'){
+            localStorage.mythChat = true;
+        }else{
+            localStorage.removeItem('mythChat');
+        }
+    }
 }
 
 /** @function modFB
@@ -116,7 +129,9 @@ function mythBook(){
     }
 
     document.onmousemove = function(){
-        getChat();
+        if(localStorage.mythChat){
+            getChat();
+        }
         modFB(mitatizador.groupTitle);
     };
     document.body.appendChild(modalBox);
@@ -133,6 +148,18 @@ function mythOptions(toggle){
         closeModal.onclick = function(){
             mythOptions('hide');
         };
+        var chatOptions = get('class','chatoptions');
+        if(localStorage.mythChat){
+            chatOptions[0].checked = true;
+        }else{
+            chatOptions[1].checked = true;
+        }
+        chatOptions[0].onclick = function(){
+            config('chat','on');
+        }
+        chatOptions[1].onclick = function(){
+            config('chat','off');
+        }
 
     }else if (toggle === 'hide') {
         modalBox.style.display = 'none';
