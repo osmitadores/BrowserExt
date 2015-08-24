@@ -792,7 +792,7 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     position: fixed;
     cursor: pointer;
     text-align: center;
-    background-color: #fff;
+    background-color: #CAC8C8;
     border-radius: 1px 1px 1px 1px;
     border-top: solid 1px #555;
     border-right: solid 1px #555;
@@ -801,4 +801,12 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     color: #fff;
     background-color: #e81123;
     /*text-shadow: 1px 1px 1px black;*/
+}
+
+#configtitle{
+    background-color: #CAC8C8;
+    margin: -10px;
+    height: 26px;
+    padding-top: inherit;
+    padding-left: inherit;
 }

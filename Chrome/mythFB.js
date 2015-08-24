@@ -1,5 +1,3 @@
-/// Caixa modal
-
 var mitatizador = {
     version:'version 0.4.4',
     chat: [
@@ -14,8 +12,7 @@ var mitatizador = {
                  <input class="chatoptions" type="radio" name="chat" value="off">Desativado`,
     enableGroup: `<h3>Trecos na capa do grupo</h3>
                  <input class="groupoptions" type="radio" name="group" value="hide">Ocultar<br>
-                 <input class="groupoptions" type="radio" name="group" value="show">Mostrar`,
-    teste:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                 <input class="groupoptions" type="radio" name="group" value="show">Mostrar`
 }
 
 /// criação do botão de opções
@@ -33,6 +30,7 @@ var modalBox = document.createElement('div');
 modalBox.className = '_3ixn';
 modalBox.id = 'modalbox';
 modalBox.innerHTML = `<div id="centerbox">
+                        <h2 id="configtitle">Myth Configs</h2>
                         <div id="innerbox">
                             ${mitatizador.enableChat}<br><br>
                             ${mitatizador.enableGroup}
@@ -55,7 +53,6 @@ try {
             addOptions();
         },1400);
     }
-
 } catch (e) {
 
 }
@@ -63,12 +60,12 @@ try {
 main();
 
 function main(){
-        if(!localStorage.mythData){
-            localStorage.mythData = true;
-            localStorage.mythChat = true;
-            localStorage.mythGroup = true;
-        }
-        mythBook();
+    if(!localStorage.mythData){
+        localStorage.mythData = true;
+        localStorage.mythChat = true;
+        localStorage.mythGroup = true;
+    }
+    mythBook();
 }
 
 function config(coisa, valor){
@@ -127,7 +124,11 @@ function modFB(groupTitle){
 }
 
 function mythBook(){
-    var queryMitos = get('id','q').placeholder = mitatizador.searchMsg;
+    try {
+        var queryMitos = get('id','q').placeholder = mitatizador.searchMsg;
+    } catch (e) {
+        console.error('Teu feice tá bugado!');
+    }
 
     var j = get('query all','a');
     var aLink = 0;
