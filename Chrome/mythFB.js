@@ -17,8 +17,11 @@ var mitatizador = {
     tavernaGroup: `<h3>Trecos na capa da Taverna</h3>
                  <input class="tavernaoptions" type="radio" name="tav" value="hide">Ocultar<br>
                  <input class="tavernaoptions" type="radio" name="tav" value="show">Mostrar`
-}
+};
 
+var twitch = {
+    ajaxInterval:1800000, // 30 minutos
+};
 /// criação do botão de opções
 var options = document.createElement('li');
 options.className = '_54ni navSubmenu __MenuItem';
@@ -109,10 +112,48 @@ function modFB(groupTitle){
     }
 }
 
-function setQuery(){
+function notifyHighlight(originLink, newId){
+    var notifyLinks = get('query all','a._33e');
+    for(var i=0; i < notifyLinks.length;i++){
+        if(notifyLinks[i].href.search('www.facebook.com/groups/taverna.do.cogu/822130587905536') != -1){
+            var atualLink = notifyLinks[i];
+        }
+    }
+    if(atualLink){
+        atualLink.id = newId;
+        atualLink.parentElement.parentElement.id = newId;
+    }
+}
+
+function getTwitch(username){
+    $.ajax({
+        url:'https://api.twitch.tv/kraken/streams/'+username,
+        success:function(channel) {
+            twitch.channel = channel;
+        },
+        error:function() {
+            console.error("Deu ruim!");
+        }
+    });
+}
+
+function mythTwitch(){
+    try {
+        if(twitch.channel.stream !== null){
+            alert("Live acontecendo!");
+        }else{
+            console.log("Feijoada");
+        }
+    } catch (e) {
+        throw e;
+    }
+
+}
+
+function setQuery(newMessage){
     try {
         // TODO arrumar query, ID 'q' é variado.
-        var queryMitos = get('id','q').placeholder = mitatizador.searchMsg;
+        var queryMitos = get('id','q').placeholder = newMessage;
     } catch (e) {
         console.error('Teu feice tá bugado!');
     }
@@ -120,7 +161,15 @@ function setQuery(){
 
 function mythBook(){
 
-    setQuery();
+    getTwitch('cogumelandooficial');
+    setTimeout(mythTwitch,5000);
+
+    twitch.mainLoop = setInterval(function(){
+        getTwitch('cogumelandooficial');
+        setTimeout(mythTwitch,5000);
+    },twitch.ajaxInterval);
+
+    setQuery(mitatizador.searchMsg);
     var j = get('query all','a');
     var aLink = 0;
     try {
@@ -147,6 +196,12 @@ function mythBook(){
             modFB("Taverna do Cogu");
         }
     };
+
+    var notifyButton = document.getElementById('fbNotificationsJewel');
+    notifyButton.onclick = function(){
+        notifyHighlight('','taverna-divulga');
+    };
+
     document.body.appendChild(modalBox);
     document.body.appendChild(botaoX);
 }
@@ -260,7 +315,7 @@ function getChat(){
             if(selectChats[0]){
                 var chat;
                 // loop checando todos os chats.
-                for(var i in selectChats){
+                for(var i = 0; i < selectChats.length; i++){
                     // os chats são checados pelo endereço url (fixo).
                     if ((selectChats[i].href === mitatizador.chat[0])||(selectChats[i].href === mitatizador.chat[1])){
                         // loop para selecionar o elemento pai do chat (6 elementos acima).

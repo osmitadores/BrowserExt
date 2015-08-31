@@ -815,3 +815,8 @@ div.fbNubFlyoutBodyContent ._510g.seen ._510h
     right: 13px;
     position: absolute;
 }
+
+#taverna-divulga{
+    background-color: green;
+    color: white;
+}

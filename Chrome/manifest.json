@@ -19,12 +19,12 @@
   "content_scripts": [
     {
       "matches": ["*://www.plug.dj/*"],
-      "js": ["mythPlug.js"],
+      "js": ["mythPlug.js","jquery.min.js"],
       "css":["plug.css"]
     },
     {
       "matches": ["*://*.facebook.com/*"],
-      "js": ["mythFB.js"],
+      "js": ["jquery.min.js","mythFB.js"],
       "css":["fb.css"]
     }
   ]
